@@ -15,10 +15,13 @@ class CreateAuditLogsTable extends Migration
     {
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreign('ip')->references('ip')->on('ip_addresses');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('ip');
+            $table->integer('user_id');
             $table->string('remarks');
             $table->timestamps();
+
+            $table->foreign('ip')->references('ip')->on('ip_addresses');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
