@@ -20,8 +20,8 @@ class CreateAuditLogsTable extends Migration
             $table->string('remarks');
             $table->timestamps();
 
-            $table->foreign('ip')->references('ip')->on('ip_addresses');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('ip')->references('ip')->on('ip_addresses');
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
