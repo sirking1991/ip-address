@@ -9,6 +9,8 @@ class IPAddress extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * The primary key associated with the table.
      *
@@ -22,13 +24,6 @@ class IPAddress extends Model
      * @var bool
      */
     public $incrementing = false;
-
-    /**
-     * The data type of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
 
     /**
      * The table associated with the model.
