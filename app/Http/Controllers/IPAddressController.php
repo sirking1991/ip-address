@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\AuditLogService;
+use App\Classes\IPAddressService;
 use App\Models\IPAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IPAddressController extends Controller
 {
@@ -14,8 +17,19 @@ class IPAddressController extends Controller
      */
     public function index()
     {
-        //
+        return IPAddressService::list();
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $ip
+     * @return \Illuminate\Http\Response
+     */
+    public function auditLogs($ip)
+    {
+        return AuditLogService::list($ip);
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +49,18 @@ class IPAddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate ip
+        $validator = Validator::make($request->all(), [
+            'ip' => 'required|ip',
+        ]);
+
+        if ($validator->fails()) {
+            return response('IP field must be a valid IP address', 422);
+        }
+
+        IPAddressService::upcreate($request->ip, $request->label);
+        
+        return $this->index();
     }
 
     /**
