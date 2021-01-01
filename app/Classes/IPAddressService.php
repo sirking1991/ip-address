@@ -13,7 +13,7 @@ class IPAddressService {
      */
     public static function list()
     {
-        return IPAddress::all();
+        return IPAddress::orderBy('ip')->get();
     }
 
     /**
