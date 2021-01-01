@@ -31,4 +31,9 @@ class IPAddress extends Model
      * @var string
      */
     protected $table = 'ip_addresses';
+
+    protected $casts = [
+        'created_at' => 'datetime:F jS Y h:i:s A',
+        'updated_at' => 'datetime:F jS Y h:i:s A',
+    ];
 }
