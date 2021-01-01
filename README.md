@@ -15,12 +15,14 @@ Installation is simple and easy. Just follow the steps below
 
 ### Requirements:
 * PHP 7.3+
+* npm
 * mysql or sqlite3 (either can be use). 
 ### Steps:
 * Pull the code from the repository
 * Execute `cp .env.example .env`  Note: The .env.example contains settings for sqlite. If you want to use mysql, you must provide the server credentials in .env file.
 
 * Execute `php artisan migrate:fresh --seed`
+* Execute `npm run dev`
 * Execute `php artisan serve`
 * You should now be able to open the app in the IP provided by the command above.
 
