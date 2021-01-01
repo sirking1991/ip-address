@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IPAddressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,16 @@ Route::get('/', function () {
     return redirect('dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('dashboard', function(){
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('ipaddress-list', [IPAddressController::class, 'index']);
+    Route::post('ipaddress-save', [IPAddressController::class, 'store']);
+    Route::get('ipaddress-audit-logs/{ip}', [IPAddressController::class, 'auditLogs']);
+});
 
 require __DIR__.'/auth.php';
+
+
