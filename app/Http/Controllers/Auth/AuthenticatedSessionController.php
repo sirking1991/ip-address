@@ -32,6 +32,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        \App\Classes\AuditLogService::log('', Auth()->user()->id, 'login');
+
         return redirect(RouteServiceProvider::HOME);
     }
 
